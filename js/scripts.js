@@ -1,32 +1,37 @@
 //business logic
-function Contact(first, last) {
-  this.firstName = first;
-  this.lastName = last;
-}
-
-Contact.prototype.fullName = function() {
-  return this.firstName + " " + this.lastName;
+function Destination(travelLocation, landmarks, timeofYear, notes) {
+  this.travelLocation = travelLocation;
+  this.landmarks = landmarks;
+  this.timeofYear = timeofYear;
+  this.notes = notes;
 }
 
 // user interface logic
 $(document).ready(function() {
-  $("form#new-contact").submit(function(event) {
+  $("form#new-destination").submit(function(event) {
     event.preventDefault();
 
-    var inputtedFirstName = $("input#new-first-name").val();
-    var inputtedLastName = $("input#new-last-name").val();
+    var inputtedTravelLocation = $("input#travelLocation").val();
+    var inputtedLandmarks = $("input#landmarks").val();
+    var inputtedTimeofYear = $("input#timeofYear").val();
+    var inputtedNotes = $("input#notes").val();
 
-    var newContact = new Contact(inputtedFirstName, inputtedLastName);
+    var newDestination = new Destination(inputtedTravelLocation, inputtedLandmarks, inputtedTimeofYear, inputtedNotes);
 
-    $("ul#contacts").append("<li><span class='contact'>" + newContact.fullName() + "</span></li>");
+    $("ul#destinations").append("<li><span class='destination'>" + newDestination.travelLocation + "</span></li>");
 
-    $("input#new-first-name").val("");
-    $("input#new-last-name").val("");
-    $(".contact").last().click(function() {
-      $("#show-contact").show();
-      $("#show-contact h2").text(newContact.firstName);
-      $(".first-name").text(newContact.firstName);
-      $(".last-name").text(newContact.lastName);
+    $("input#travelLocation").val("");
+    $("input#landmarks").val("");
+    $("input#timeofYear").val("");
+    $("input#notes").val("");
+
+    $(".destination").last().click(function() {
+      $("#show-destination").show();
+      $("#show-destination h2").text(newDestination.travelLocation);
+      $(".travelLocation").text(newDestination.travelLocation);
+      $(".landmarks").text(newDestination.landmarks);
+      $(".timeofYear").text(newDestination.timeofYear);
+      $(".notes").text(newDestination.notes);
     });
   });
 });
